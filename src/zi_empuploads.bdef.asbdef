@@ -1,0 +1,28 @@
+managed implementation in class zbp_i_empuploads unique;
+strict ( 2 );
+
+define behavior for ZI_EmpUploadS //alias <alias_name>
+persistent table zemp_uploads
+lock master
+authorization master ( instance )
+etag master LastChangedAt
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) EmpId, LocalCreatedAt, LastChangedAt;
+
+  // Custom static action for bulk Excel upload
+  static action uploadExcel parameter zac_excel_upload result [1..*] $self;
+
+  mapping for zemp_uploads
+    {
+      EmpId          = emp_id;
+      EmpName        = emp_name;
+      Department     = department;
+      Salary         = salary;
+      JoinDate       = join_date;
+      LocalCreatedAt = local_created_at;
+      LastChangedAt  = last_changed_at;
+    }
+}

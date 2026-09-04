@@ -1,0 +1,5 @@
+@EndUserText.label: 'Excel upload file'
+define service ZSRV_UPLOAD_EXCEL {
+  expose zc_4859_user;
+  expose ZC_4859_user_dev;
+}
